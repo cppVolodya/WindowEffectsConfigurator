@@ -1,0 +1,7 @@
+# ignore files
+build.py
+
+# ignore directories
+build/
+.idea/
+.PVS-Studio
