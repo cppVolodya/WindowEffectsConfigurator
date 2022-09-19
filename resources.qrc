@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file alias="graphics_shadow_effect.ico">images/.ico/window_effects_configurator.ico</file>
+    </qresource>
+</RCC>
