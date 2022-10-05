@@ -39,6 +39,19 @@ private:
 	EffectType m_effect_type;
 	DWORD      m_effect_configs;
 	QColor     m_gradient_color;
+private:
+	inline void SaveWindowDescriptor(const WId &window_id);
+
+	void GetFunctionOfSetWindowCompositionAttrib();
+
+	N_ImplementationOfEffects::AccentPolicy CreateAccentPolicy();
+
+	DWORD CreateAccentFlags();
+
+	void DisableBlurBehindMasks();
+
+	N_ImplementationOfEffects::WindowCompositionAttribData CreateWindowCompositionAttribData
+		(N_ImplementationOfEffects::AccentPolicy &accent_policy);
 };
 inline WindowEffectsConfigurator::WindowEffectsConfigurator(const WId &window_id)
 	: m_hwnd(nullptr),
