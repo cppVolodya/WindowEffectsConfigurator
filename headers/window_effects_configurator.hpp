@@ -20,6 +20,17 @@ namespace N_WindowEffectsConfigurator
 class WindowEffectsConfigurator
 {
 public:
+	enum class EffectType
+	{
+		disabled,
+		gradient,
+		transparent_gradient,
+		blur_behind,
+		acrylic_blur_behind,
+		host_backdrop,
+		translucent_background
+	};
+public:
 	inline explicit WindowEffectsConfigurator(const WId &window_id);
 
 	void ApplyEffects();
