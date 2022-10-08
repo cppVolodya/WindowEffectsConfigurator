@@ -30,6 +30,14 @@ public:
 		host_backdrop,
 		translucent_background
 	};
+
+	enum class EffectConfig : DWORD
+	{
+		disable_all              = 0x0,
+		enable_gradient_color    = 0x2,
+		expand_to_fullscreen     = 0x4,
+		enable_blur_behind_masks = 0x10
+	};
 public:
 	inline explicit WindowEffectsConfigurator(const WId &window_id);
 
