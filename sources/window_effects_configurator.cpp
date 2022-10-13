@@ -37,4 +37,16 @@ void WindowEffectsConfigurator::GetFunctionOfSetWindowCompositionAttrib()
 		throw std::runtime_error("Can't get user32.dll module");
 	}
 }
+
+N_ImplementationOfEffects::AccentPolicy WindowEffectsConfigurator::CreateAccentPolicy()
+{
+	N_ImplementationOfEffects::AccentPolicy accent_policy;
+
+	accent_policy.m_accent_state   = static_cast<N_ImplementationOfEffects::AccentState>(this->m_effect_type);
+	accent_policy.m_accent_flags   = this->CreateAccentFlags();
+	accent_policy.m_gradient_color = Color_ABGR::FromQColor(this->m_gradient_color).ToDword();
+	accent_policy.m_animation_id   = 0x0;
+
+	return accent_policy;
+}
 }  // namespace N_WindowEffectsConfigurator
