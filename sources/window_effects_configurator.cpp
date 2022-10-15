@@ -49,4 +49,30 @@ N_ImplementationOfEffects::AccentPolicy WindowEffectsConfigurator::CreateAccentP
 
 	return accent_policy;
 }
+
+DWORD WindowEffectsConfigurator::CreateAccentFlags()
+{
+	DWORD accent_flags{0x0};
+
+	if(this->m_effect_configs & static_cast<DWORD>(EffectConfig::enable_gradient_color))
+	{
+		accent_flags |= static_cast<DWORD>(N_ImplementationOfEffects::AccentFlags::enable_gradient_color);
+	}
+
+	if(this->m_effect_configs & static_cast<DWORD>(EffectConfig::expand_to_fullscreen))
+	{
+		accent_flags |= static_cast<DWORD>(N_ImplementationOfEffects::AccentFlags::expand_to_fullscreen);
+	}
+
+	if(this->m_effect_configs & static_cast<DWORD>(EffectConfig::enable_blur_behind_masks))
+	{
+		accent_flags |= static_cast<DWORD>(N_ImplementationOfEffects::AccentFlags::enable_blur_behind_masks);
+	}
+	else
+	{
+		this->DisableBlurBehindMasks();
+	}
+
+	return accent_flags;
+}
 }  // namespace N_WindowEffectsConfigurator
