@@ -75,4 +75,17 @@ DWORD WindowEffectsConfigurator::CreateAccentFlags()
 
 	return accent_flags;
 }
+
+void WindowEffectsConfigurator::DisableBlurBehindMasks()
+{
+	N_ImplementationOfEffects::AccentPolicy accent_policy;
+	accent_policy.m_accent_state   = static_cast<N_ImplementationOfEffects::AccentState>(EffectType::disabled);
+	accent_policy.m_accent_flags   = static_cast<DWORD>(EffectConfig::disable_all);
+	accent_policy.m_gradient_color = Color_ABGR::FromQColor(QColor(Qt::white)).ToDword();
+	accent_policy.m_animation_id   = 0x0;
+
+	N_ImplementationOfEffects::WindowCompositionAttribData data{this->CreateWindowCompositionAttribData(accent_policy)};
+
+	this->m_FunctionOfSetWindowCompositionAttribute(this->m_hwnd, &data);
+}
 }  // namespace N_WindowEffectsConfigurator
