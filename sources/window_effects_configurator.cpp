@@ -88,4 +88,15 @@ void WindowEffectsConfigurator::DisableBlurBehindMasks()
 
 	this->m_FunctionOfSetWindowCompositionAttribute(this->m_hwnd, &data);
 }
+
+N_ImplementationOfEffects::WindowCompositionAttribData WindowEffectsConfigurator::CreateWindowCompositionAttribData
+	(N_ImplementationOfEffects::AccentPolicy &accent_policy)
+{
+	N_ImplementationOfEffects::WindowCompositionAttribData data{};
+	data.m_attrib  = N_ImplementationOfEffects::WindowCompositeAttrib::accent_policy;
+	data.m_pv_data = &accent_policy;
+	data.m_cb_data = sizeof(accent_policy);
+
+	return data;
+}
 }  // namespace N_WindowEffectsConfigurator
