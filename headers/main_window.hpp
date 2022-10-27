@@ -36,6 +36,21 @@ private:
 	inline constexpr static int S_RANGE_OF_ALPHA_COLOR_CHANNEL_MAX{255};
 
 	inline constexpr static qreal S_ROUNDNESS_OF_WINDOW_SHAPE{20.0};
+private slots:
+	void SlotOpenColorDialog();
+
+	void SlotSetEffectType(int index);
+
+	void SlotSetEffectConfigOfEnableGradientColor(int state);
+	void SlotSetEffectConfigOfExpandToFullscreen(int state);
+	void SlotSetEffectConfigOfEnableBlurBehindMasks(int state);
+
+	void SlotSetAlphaColorChannel(int value);
+
+	void SlotSetTransparent(int state);
+	void SlotSetFramelessWindowHint(int state);
+
+	void SlotSetWindowShape(int index);
 private:
 	std::unique_ptr<WindowEffectsConfigurator> m_window_effects_configurator;
 
