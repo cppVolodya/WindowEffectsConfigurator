@@ -90,6 +90,18 @@ private:
 	inline bool TrySetRectangleWindowShape		 (const QString &shape);
 	inline bool TrySetRoundedRectangleWindowShape(const QString &shape);
 	inline bool TrySetEllipseWindowShape		 (const QString &shape);
+
+	void SetDefaultSettings();
+
+	inline void CustomizeWidgets					   ();
+	inline void CustomizeButtonWidgets				   ();
+	void        CustomizeComboBoxWidgets			   ();
+	void        CustomizeComboBoxOfEffectTypeWidgets   ();
+	void        CustomizeComboBoxOfWindowShapeWidgets  ();
+	inline void CustomizeCheckBoxWidgets			   ();
+	inline void CustomizeCheckBoxOfEffectConfigWidgets ();
+	inline void CustomizeSliderWidgets				   ();
+	inline void CustomizeLabelWidgets				   ();
 };
 }  // namespace N_WindowEffectsConfigurator
 
