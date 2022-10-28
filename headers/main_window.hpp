@@ -78,6 +78,18 @@ private:
 	QPointF m_last_drag_position;
 
 	bool m_mouse_is_pressed;
+private:
+	inline bool TrySetDisabledEffect			 (const QString &effect);
+	inline bool TrySetGradientEffect			 (const QString &effect);
+	inline bool TrySetTransparentGradientEffect  (const QString &effect);
+	inline bool TrySetBlurBehindEffect		     (const QString &effect);
+	inline bool TrySetAcrylicBlurBehindEffect	 (const QString &effect);
+	inline bool TrySetTranslucentBackgroundEffect(const QString &effect);
+
+	inline bool TrySetDefaultWindowShape		 (const QString &shape);
+	inline bool TrySetRectangleWindowShape		 (const QString &shape);
+	inline bool TrySetRoundedRectangleWindowShape(const QString &shape);
+	inline bool TrySetEllipseWindowShape		 (const QString &shape);
 };
 }  // namespace N_WindowEffectsConfigurator
 
