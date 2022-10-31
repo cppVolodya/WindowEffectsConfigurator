@@ -102,6 +102,21 @@ private:
 	inline void CustomizeCheckBoxOfEffectConfigWidgets ();
 	inline void CustomizeSliderWidgets				   ();
 	inline void CustomizeLabelWidgets				   ();
+
+	void ConfigureBoxLayout();
+	inline void ConfigureBoxLayoutForCheckBoxOfEffectConfig(QVBoxLayout *box_layout);
+	inline void ConfigureBoxLayoutForAlphaColorChannel(QHBoxLayout *box_layout);
+	inline void ConfigureComboBoxOfEffectType(QHBoxLayout *box_layout);
+	static inline void ConfigureBoxLayoutForEffects(QVBoxLayout *box_layout,
+											        QHBoxLayout *layout_of_combo_box_of_effect_type,
+											        QVBoxLayout *layout_of_check_boxes_of_effect_config,
+											        QHBoxLayout *layout_of_alpha_color_channel);
+	inline void ConfigureBoxLayoutForWindowFlags(QHBoxLayout *box_layout);
+	inline void ConfigureBoxLayoutForWindowShape(QHBoxLayout *box_layout);
+	void ConfigureMainBoxLayout(QVBoxLayout *box_layout,
+							    QHBoxLayout *layout_of_window_shape,
+							    QHBoxLayout *layout_of_window_flags,
+							    QVBoxLayout *layout_of_effects);
 };
 }  // namespace N_WindowEffectsConfigurator
 
