@@ -117,6 +117,13 @@ private:
 							    QHBoxLayout *layout_of_window_shape,
 							    QHBoxLayout *layout_of_window_flags,
 							    QVBoxLayout *layout_of_effects);
+
+	void 		ConnectSignalsToSlots					      ();
+	inline void ConnectSignalsToSlotsForButtons			   	  ();
+	inline void ConnectSignalsToSlotsForComboBoxes			  ();
+	inline void ConnectSignalsToSlotsForCheckBoxes			  ();
+	void 	    ConnectSignalsToSlotsForCheckBoxOfEffectConfig();
+	inline void ConnectSignalsToSlotsForCheckBoxOfWindowFlags ();
 };
 }  // namespace N_WindowEffectsConfigurator
 
