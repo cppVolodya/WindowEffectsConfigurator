@@ -39,4 +39,18 @@ MainWindow::MainWindow(QWidget *parent)
 	this->ConfigureBoxLayout   ();
 	this->ConnectSignalsToSlots();
 }
+
+void MainWindow::SetDefaultSettings()
+{
+	this->setObjectName("main_window");
+
+	this->setStyleSheet("QWidget#main_window { background-color: white; }");
+
+	this->setWindowTitle("Window Effects Configurator");
+
+	this->setWindowIcon(QIcon(MainWindow::S_PATH_TO_ICON_OF_WINDOW.data()));
+
+	this->resize(MainWindow::S_WIDTH_OF_WINDOW,
+				 MainWindow::S_HEIGHT_OF_WINDOW);
+}
 }  // namespace N_WindowEffectsConfigurator
