@@ -123,4 +123,91 @@ inline void MainWindow::CustomizeLabelWidgets()
 	this->m_label_of_window_shape 	  	 = std::make_unique<QLabel>("Window shape",	    this).release();
 	this->m_label_of_effect_type		 = std::make_unique<QLabel>("Effect type", 	    this).release();
 }
+
+void MainWindow::ConfigureBoxLayout()
+{
+	QVBoxLayout *layout_of_check_boxes_of_effect_config = std::make_unique<QVBoxLayout>().release();
+	this->ConfigureBoxLayoutForCheckBoxOfEffectConfig(layout_of_check_boxes_of_effect_config);
+
+	QHBoxLayout *layout_of_alpha_color_channel = std::make_unique<QHBoxLayout>().release();
+	this->ConfigureBoxLayoutForAlphaColorChannel(layout_of_alpha_color_channel);
+
+	QHBoxLayout *layout_of_combo_box_of_effect_type = std::make_unique<QHBoxLayout>().release();
+	this->ConfigureComboBoxOfEffectType(layout_of_combo_box_of_effect_type);
+
+	QVBoxLayout *layout_of_effects = std::make_unique<QVBoxLayout>().release();
+	MainWindow::ConfigureBoxLayoutForEffects(layout_of_effects,
+									         layout_of_combo_box_of_effect_type,
+									         layout_of_check_boxes_of_effect_config,
+									         layout_of_alpha_color_channel);
+
+	QHBoxLayout *layout_of_window_flags = std::make_unique<QHBoxLayout>().release();
+	this->ConfigureBoxLayoutForWindowFlags(layout_of_window_flags);
+
+	QHBoxLayout *layout_of_window_shape = std::make_unique<QHBoxLayout>().release();
+	this->ConfigureBoxLayoutForWindowShape(layout_of_window_shape);
+
+	QVBoxLayout *layout_of_main = std::make_unique<QVBoxLayout>().release();
+	this->ConfigureMainBoxLayout(layout_of_main,
+								 layout_of_window_shape,
+								 layout_of_window_flags,
+								 layout_of_effects);
+
+	this->setLayout(layout_of_main);
+}
+
+inline void MainWindow::ConfigureBoxLayoutForCheckBoxOfEffectConfig(QVBoxLayout *box_layout)
+{
+	box_layout->addWidget(this->m_check_box_of_effect_config_of_enable_gradient_color);
+	box_layout->addWidget(this->m_check_box_of_effect_config_of_expand_to_fullscreen);
+	box_layout->addWidget(this->m_check_box_of_effect_config_of_enable_blur_behind_masks);
+}
+
+inline void MainWindow::ConfigureBoxLayoutForAlphaColorChannel(QHBoxLayout *box_layout)
+{
+	box_layout->addWidget(this->m_slider_of_alpha_color_channel);
+	box_layout->addWidget(this->m_label_of_alpha_color_channel);
+}
+
+inline void MainWindow::ConfigureComboBoxOfEffectType(QHBoxLayout *box_layout)
+{
+	box_layout->addWidget(this->m_combo_box_of_effect_type);
+	box_layout->addWidget(this->m_label_of_effect_type);
+}
+
+inline void MainWindow::ConfigureBoxLayoutForEffects(QVBoxLayout *box_layout,
+													 QHBoxLayout *layout_of_combo_box_of_effect_type,
+											         QVBoxLayout *layout_of_check_boxes_of_effect_config,
+											         QHBoxLayout *layout_of_alpha_color_channel)
+{
+	box_layout->addLayout(layout_of_combo_box_of_effect_type);
+	box_layout->addLayout(layout_of_check_boxes_of_effect_config);
+	box_layout->addLayout(layout_of_alpha_color_channel);
+}
+
+inline void MainWindow::ConfigureBoxLayoutForWindowFlags(QHBoxLayout *box_layout)
+{
+	box_layout->addWidget(this->m_check_box_of_transparent);
+	box_layout->addWidget(this->m_check_box_of_frameless_window_hint);
+}
+
+inline void MainWindow::ConfigureBoxLayoutForWindowShape(QHBoxLayout *box_layout)
+{
+	box_layout->addWidget(this->m_combo_box_of_window_shape);
+	box_layout->addWidget(this->m_label_of_window_shape);
+}
+
+void MainWindow::ConfigureMainBoxLayout(QVBoxLayout *box_layout,
+										QHBoxLayout *layout_of_window_shape,
+										QHBoxLayout *layout_of_window_flags,
+										QVBoxLayout *layout_of_effects)
+{
+	box_layout->addWidget(this->m_exit_button);
+
+	box_layout->addLayout(layout_of_window_shape);
+	box_layout->addLayout(layout_of_window_flags);
+	box_layout->addLayout(layout_of_effects);
+
+	box_layout->addWidget(this->m_button_choose_color);
+}
 }  // namespace N_WindowEffectsConfigurator
