@@ -210,4 +210,58 @@ void MainWindow::ConfigureMainBoxLayout(QVBoxLayout *box_layout,
 
 	box_layout->addWidget(this->m_button_choose_color);
 }
+
+void MainWindow::ConnectSignalsToSlots()
+{
+	(void)QObject::connect(this->m_slider_of_alpha_color_channel, &QSlider::valueChanged,
+						   this, 								  &MainWindow::SlotSetAlphaColorChannel);
+
+	this->ConnectSignalsToSlotsForButtons   ();
+	this->ConnectSignalsToSlotsForComboBoxes();
+	this->ConnectSignalsToSlotsForCheckBoxes();
+}
+
+inline void MainWindow::ConnectSignalsToSlotsForButtons()
+{
+	(void)QObject::connect(this->m_button_choose_color, &QPushButton::clicked,
+						   this,					    &MainWindow::SlotOpenColorDialog);
+
+	(void)QObject::connect(this->m_exit_button, &QPushButton::clicked,
+						   this, 				&MainWindow::close);
+}
+
+inline void MainWindow::ConnectSignalsToSlotsForComboBoxes()
+{
+	(void)QObject::connect(this->m_combo_box_of_effect_type, &QComboBox::currentIndexChanged,
+						   this,                             &MainWindow::SlotSetEffectType);
+
+	(void)QObject::connect(this->m_combo_box_of_window_shape, &QComboBox::currentIndexChanged,
+						   this,                              &MainWindow::SlotSetWindowShape);
+}
+
+inline void MainWindow::ConnectSignalsToSlotsForCheckBoxes()
+{
+	this->ConnectSignalsToSlotsForCheckBoxOfEffectConfig();
+	this->ConnectSignalsToSlotsForCheckBoxOfWindowFlags();
+}
+
+void MainWindow::ConnectSignalsToSlotsForCheckBoxOfEffectConfig()
+{
+	(void)QObject::connect(this->m_check_box_of_effect_config_of_enable_gradient_color, &QCheckBox::stateChanged,
+						   this,                                                        &MainWindow::SlotSetEffectConfigOfEnableGradientColor);
+
+	(void)QObject::connect(this->m_check_box_of_effect_config_of_expand_to_fullscreen, &QCheckBox::stateChanged,
+						   this,                                                       &MainWindow::SlotSetEffectConfigOfExpandToFullscreen);
+
+	(void)QObject::connect(this->m_check_box_of_effect_config_of_enable_blur_behind_masks, &QCheckBox::stateChanged,
+						   this,                                                           &MainWindow::SlotSetEffectConfigOfEnableBlurBehindMasks);
+}
+
+inline void MainWindow::ConnectSignalsToSlotsForCheckBoxOfWindowFlags()
+{
+	(void)QObject::connect(this->m_check_box_of_transparent, &QCheckBox::stateChanged,
+						   this, 							 &MainWindow::SlotSetTransparent);
+	(void)QObject::connect(this->m_check_box_of_frameless_window_hint, &QCheckBox::stateChanged,
+						   this, 									   &MainWindow::SlotSetFramelessWindowHint);
+}
 }  // namespace N_WindowEffectsConfigurator
