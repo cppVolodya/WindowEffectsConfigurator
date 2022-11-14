@@ -264,4 +264,30 @@ inline void MainWindow::ConnectSignalsToSlotsForCheckBoxOfWindowFlags()
 	(void)QObject::connect(this->m_check_box_of_frameless_window_hint, &QCheckBox::stateChanged,
 						   this, 									   &MainWindow::SlotSetFramelessWindowHint);
 }
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+	this->m_mouse_is_pressed = true;
+	this->m_last_drag_position = event->globalPosition();
+
+	QWidget::mousePressEvent(event);
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+	this->m_mouse_is_pressed = false;
+
+	QWidget::mouseReleaseEvent(event);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+	if(this->m_mouse_is_pressed)
+	{
+		this->move((event->globalPosition() - m_last_drag_position).toPoint() + this->pos());
+		this->m_last_drag_position = event->globalPosition();
+	}
+
+	QWidget::mouseMoveEvent(event);
+}
 }  // namespace N_WindowEffectsConfigurator
