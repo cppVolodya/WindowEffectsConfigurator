@@ -290,4 +290,153 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 	QWidget::mouseMoveEvent(event);
 }
+
+void MainWindow::SlotOpenColorDialog()
+{
+	this->m_chosen_color = QColorDialog::getColor(Qt::white, this, "Select Color");
+	m_chosen_color.setAlpha(this->m_slider_of_alpha_color_channel->value());
+	this->m_window_effects_configurator->SetGradientColor(this->m_chosen_color);
+	this->m_window_effects_configurator->ApplyEffects();
+}
+
+void MainWindow::SlotSetEffectType(int index)
+{
+	const QString effect_type = this->m_combo_box_of_effect_type->itemText(index);
+
+	bool is_set{this->TrySetDisabledEffect(effect_type)};
+
+	if(not is_set)
+	{
+		is_set = this->TrySetGradientEffect(effect_type);
+	}
+
+	if(not is_set)
+	{
+		is_set = this->TrySetTransparentGradientEffect(effect_type);
+	}
+
+	if(not is_set)
+	{
+		is_set = this->TrySetBlurBehindEffect(effect_type);
+	}
+
+	if(not is_set)
+	{
+		is_set = this->TrySetAcrylicBlurBehindEffect(effect_type);
+	}
+
+	if(not is_set)
+	{
+		(void)this->TrySetTranslucentBackgroundEffect(effect_type);
+	}
+
+	this->m_window_effects_configurator->ApplyEffects();
+}
+
+void MainWindow::SlotSetEffectConfigOfEnableGradientColor(int state)
+{
+	if(state == Qt::Checked)
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::enable_gradient_color, true);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+	else
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::enable_gradient_color, false);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+}
+
+void MainWindow::SlotSetEffectConfigOfExpandToFullscreen(int state)
+{
+	if(state == Qt::Checked)
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::expand_to_fullscreen, true);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+	else
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::expand_to_fullscreen, false);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+}
+
+void MainWindow::SlotSetEffectConfigOfEnableBlurBehindMasks(int state)
+{
+	if(state == Qt::Checked)
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::enable_blur_behind_masks, true);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+	else
+	{
+		this->m_window_effects_configurator->SetEffectConfigs
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectConfig::enable_blur_behind_masks, false);
+
+		this->m_window_effects_configurator->ApplyEffects();
+	}
+}
+
+void MainWindow::SlotSetAlphaColorChannel(int value)
+{
+	this->m_chosen_color.setAlpha(value);
+	this->m_window_effects_configurator->SetGradientColor(this->m_chosen_color);
+	this->m_window_effects_configurator->ApplyEffects();
+}
+
+void MainWindow::SlotSetTransparent(int state)
+{
+	if(state == Qt::Checked)
+	{
+		this->setStyleSheet("QWidget#main_window { background-color: transparent; }");
+	}
+	else
+	{
+		this->setStyleSheet("QWidget#main_window { background-color: white; }");
+	}
+}
+
+void MainWindow::SlotSetFramelessWindowHint(int state)
+{
+	if(state == Qt::Checked)
+	{
+		this->setWindowFlag(Qt::FramelessWindowHint, true);
+	}
+	else
+	{
+		this->setWindowFlag(Qt::FramelessWindowHint, false);
+	}
+
+	this->show();
+}
+
+void MainWindow::SlotSetWindowShape(int index)
+{
+	const auto window_shape = this->m_combo_box_of_window_shape->itemText(index);
+
+	bool is_set{this->TrySetDefaultWindowShape(window_shape)};
+
+	if(not is_set)
+	{
+		is_set = this->TrySetRectangleWindowShape(window_shape);
+	}
+	if(not is_set)
+	{
+		is_set = this->TrySetRoundedRectangleWindowShape(window_shape);
+	}
+	if(not is_set)
+	{
+		(void)this->TrySetEllipseWindowShape(window_shape);
+	}
+}
 }  // namespace N_WindowEffectsConfigurator
