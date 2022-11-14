@@ -333,6 +333,91 @@ void MainWindow::SlotSetEffectType(int index)
 	this->m_window_effects_configurator->ApplyEffects();
 }
 
+inline bool MainWindow::TrySetDisabledEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Disabled")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::disabled);
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetGradientEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Gradient")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::gradient);
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetTransparentGradientEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Transparent gradient")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::transparent_gradient);
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetBlurBehindEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Blur behind")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::blur_behind);
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetAcrylicBlurBehindEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Acrylic blur behind")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::acrylic_blur_behind);
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetTranslucentBackgroundEffect(const QString &effect)
+{
+	bool result{false};
+	if(effect == "Translucent background")
+	{
+		this->m_window_effects_configurator->SetEffectType
+			(N_WindowEffectsConfigurator::WindowEffectsConfigurator::EffectType::translucent_background);
+
+		result = true;
+	}
+
+	return result;
+}
+
+
 void MainWindow::SlotSetEffectConfigOfEnableGradientColor(int state)
 {
 	if(state == Qt::Checked)
@@ -438,5 +523,58 @@ void MainWindow::SlotSetWindowShape(int index)
 	{
 		(void)this->TrySetEllipseWindowShape(window_shape);
 	}
+}
+
+inline bool MainWindow::TrySetDefaultWindowShape(const QString &shape)
+{
+	bool result{false};
+	if(shape == "Default")
+	{
+		this->setMask(QRegion());
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetRectangleWindowShape(const QString &shape)
+{
+	bool result{false};
+	if(shape == "Rectangle")
+	{
+		this->setMask(QRegion(this->rect()));
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetRoundedRectangleWindowShape(const QString &shape)
+{
+	bool result{false};
+	if(shape == "Rounded rectangle")
+	{
+		QPainterPath path;
+		path.addRoundedRect(this->rect(), S_ROUNDNESS_OF_WINDOW_SHAPE,
+							S_ROUNDNESS_OF_WINDOW_SHAPE);
+		this->setMask(QRegion(path.toFillPolygon().toPolygon()));
+
+		result = true;
+	}
+
+	return result;
+}
+
+inline bool MainWindow::TrySetEllipseWindowShape(const QString &shape)
+{
+	bool result{false};
+	if(shape == "Ellipse")
+	{
+		this->setMask(QRegion(this->rect(), QRegion::Ellipse));
+
+		result = true;
+	}
+
+	return result;
 }
 }  // namespace N_WindowEffectsConfigurator
