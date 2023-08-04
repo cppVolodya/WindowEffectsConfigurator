@@ -12,7 +12,7 @@
 
 "Window Effects Configurator" is a program that shows how to set various effects for a window.
 
-![ProgramIcon](https://github.com/cppVolodya/tasks/assets/103601559/763ceb1b-407d-45af-9212-42e950f93b94)
+![ProgramIcon](https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/6c80e5dc-636a-4899-9937-7dfba42a5806)
 
 ## Tech Stack
 
@@ -28,31 +28,31 @@
 
 - Setting the gradient effect
 
-https://github.com/cppVolodya/tasks/assets/103601559/58dacd7c-c071-4d07-969b-30127f8f4f56
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/e9cbc85c-3211-4e77-bec5-d897575366b9
 
 - Setting the transparent gradient effect
 
-https://github.com/cppVolodya/tasks/assets/103601559/fcf284ae-5d6c-4419-87b2-3167fc6f7e80
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/69d6a99c-1a1f-4394-ab23-fe3a641640f3
 
 - Setting the blur effect
 
-https://github.com/cppVolodya/tasks/assets/103601559/23564079-cb9f-4fd0-bd75-74b0ce29431c
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/feae5f5b-5af0-454b-8062-ccad5c457ce2
 
 - Setting the acrylic effect
 
-https://github.com/cppVolodya/tasks/assets/103601559/133fcdc8-8263-4790-85f9-7ff2413037c9
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/6fd66807-bcb8-4dc9-b755-a1261f734779
 
 - Setting the translucent background
 
-https://github.com/cppVolodya/tasks/assets/103601559/e67e8ee2-e3c1-4137-b18c-1711e91fda4e
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/697873d9-2410-483e-b415-3e6693f9e89f
 
 - Setting the form for the window in combination with another effects
 
-https://github.com/cppVolodya/tasks/assets/103601559/c5ad5c3e-65e4-4bd6-a5ff-87337405c438
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/a887db13-32b4-4860-8c6d-c9a38988fe6c
 
 - Setting the fullscreen option
 
-https://github.com/cppVolodya/tasks/assets/103601559/c3681790-fcc5-46a9-80d5-64f921c83561
+https://github.com/cppVolodya/WindowEffectsConfigurator/assets/103601559/85d184c5-67b9-410b-8036-45e0e8dd3ffe
 
 ## Run Locally
 
